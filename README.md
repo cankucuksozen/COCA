@@ -4,7 +4,11 @@ Official GitHub repository for **CVPR2025 accepted paper**:
 [![arXiv](https://img.shields.io/badge/arXiv-2505.02071-b31b1b.svg)](https://arxiv.org/abs/2505.02071)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
----
+## 🖼️ Teaser Figure
+
+<p align="center">
+  <img src="teaser.png" width="600">
+</p>
 
 ## 🔗 Links
 - [📄 Paper (arXiv)](https://arxiv.org/abs/2505.02071)
