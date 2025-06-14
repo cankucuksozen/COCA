@@ -1,0 +1,41 @@
+# @package _global_
+
+batch_size: 30
+
+trainer:
+  optimizer_config:
+    weight_decay: 0.000001
+
+model:
+  num_slots: &num_slots ${dataset.max_num_objects}
+  encoder_params:
+    channels: 128
+    kernel_size: 5
+    stride: 1
+    padding: 2
+    output_channels: 96
+  model_params:
+    temps: [2.0, 1.0, 0.5]
+    channels: [1, 96, 96, 96]
+    num_attns: [1, 3, 5]
+    attn_q_kernels: [1, 1, 1]
+    attn_k_kernels: [3, 5, 8]
+    attn_q_strides: [1, 1, 1]
+    attn_k_strides: [1, 1, 1]
+    attn_q_paddings: [0, 0, 0]
+    attn_k_paddings: [1, 2, 0]
+    num_clusters: [1, 2, 5, *num_slots]
+    kernels: [[1,1], [4,4], [4,4], [8,8]]
+    strides: [[1,1], [4,4], [4,4], [1,1]] 
+    paddings: [[0,0], [0,0], [0,0], [0,0]]  
+  decoder_params:
+    conv_transposes: true
+    channels: [64, 64, 64, 64, 64, 4]
+    activations: [relu, relu, relu, relu, relu, null]
+    kernels: [5, 5, 5, 5, 5, 3]
+    strides: [2, 2, 2, 2, 1, 1]
+    paddings: [2, 2, 2, 2, 2, 1]
+    output_paddings: [1, 1, 1, 1, 0, 0]
+  w_broadcast: 8
+  h_broadcast: 8
+  

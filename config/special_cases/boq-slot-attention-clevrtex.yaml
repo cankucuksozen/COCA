@@ -1,0 +1,24 @@
+# @package _global_
+
+model:
+  latent_size: 64
+  encoder_params:
+    channels: [64, 64, 64, 64]
+    kernels: [5, 5, 5, 5]
+    paddings: [2, 2, 2, 2]
+    strides: [2, 1, 1, 1]
+  decoder_params:
+    conv_transposes: true
+    channels: [64, 64, 64, 64, 64, 4]
+    kernels: [5, 5, 5, 5, 5, 3]
+    strides: [2, 2, 2, 2, 1, 1]
+    paddings: [2, 2, 2, 2, 2, 1]
+    output_paddings: [1, 1, 1, 1, 0, 0]
+    activations: [relu, relu, relu, relu, null]
+  attention_iters: 3
+  optimization_method: "bi-level"
+  slots_initialization: "embedding"
+  mlp_size: 128
+  eps: 1e-8
+  h_broadcast: 8
+  w_broadcast: 8

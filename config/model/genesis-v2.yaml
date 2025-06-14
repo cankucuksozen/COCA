@@ -1,0 +1,37 @@
+# @package _global_
+
+defaults:
+  - _base
+
+batch_size: 64
+trainer:
+  _target_: models.genesis_v2.trainer.Genesis_v2_Trainer
+  steps: 500_000
+  optimizer_config:
+    alg: Adam
+    lr: 1e-4
+
+model:
+  _target_: models.genesis_v2.model.Genesis_v2
+  name: genesis-v2
+  num_slots: ${dataset.max_num_objects}
+  geco_goal_constant: 0.5655
+  geco_step_size: 1e-5
+  geco_alpha: 0.99
+  geco_init: 1.0
+  geco_min: 1e-5
+  geco_speedup: 10.0
+  feat_dim: 64
+  pixel_bound: true
+  pixel_std: 0.7
+  encoder_params:
+    width: ${dataset.width}
+    height: ${dataset.height}
+    norm: "group"
+  icsbp_params:
+    width: ${dataset.width}
+    height: ${dataset.height}
+    num_slots: ${dataset.max_num_objects}
+    latent_dim: 8
+    semiconv: true
+    dist_kernel: "gaussian"

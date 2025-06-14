@@ -1,0 +1,37 @@
+# @package _global_
+trainer:
+  steps: 50_000
+  use_warmup_lr: true
+  warmup_steps: 10_000
+  use_exp_decay: true
+  exp_decay_rate: 0.5
+  exp_decay_steps: 15_000
+
+model:
+  num_slots: 4
+  encoder_params:
+    channels: [64, 64, 64, 64]
+    encoder_type: "conv"
+    encoder_dict: 
+        kernels: [5, 5, 5, 5] 
+        paddings: [2, 2, 2, 2]
+        strides: [1, 1, 1, 1]
+        batchnorms: [false, false, false, false]
+        activations: [relu, relu, relu, relu]
+  model_params:
+    in_res_w: ${dataset.width}
+    in_res_h: ${dataset.height}
+    num_attn_iters: 3
+    slot_dims: 64
+    mlp_dims: 128
+    zero_position_init: false
+    add_rel_pos_to_values: true
+    inc_scale: false
+  decoder_params:
+    conv_transposes: [false, false, false, false, false, false]
+    channels: [256, 256, 256, 256, 256, 4]
+    kernels: [1, 1, 1, 1, 1, 1]
+    strides: [1, 1, 1, 1, 1, 1]
+    paddings: [0, 0, 0, 0, 0, 0]
+    output_paddings: [0, 0, 0, 0, 0, 0]
+    activations: [relu, relu, relu, relu, relu, null]

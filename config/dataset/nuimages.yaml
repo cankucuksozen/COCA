@@ -1,0 +1,19 @@
+# @package _global_
+
+dataset:
+  _target_: data.datasets.NuImages
+  width: 160
+  height: 96
+  num_background_objects: 1
+  max_num_objects: 23
+  name: nuimages
+  input_channels: 3
+  dataset_path: nuimages_all-full.hdf5
+  downstream_features:
+    - category
+    - bbox
+
+data_sizes:
+  - 60000
+  - 5000
+  - 5000

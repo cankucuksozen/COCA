@@ -1,0 +1,37 @@
+# @package _global_
+
+batch_size: 30
+
+model:
+  num_slots: &num_slots 7
+  encoder_params:
+    channels: 96
+    kernel_size: 5
+    stride: 1
+    padding: 2
+    output_channels: 96
+  model_params:
+    temps: [1, 0.5, 1]
+    channels: [1, 96, 96, 96]
+    num_attns: [1,2,3]
+    attn_q_kernels: [4, 4, 8]
+    attn_k_kernels: [4, 4, 8]
+    attn_q_strides: [4, 4, 1]
+    attn_k_strides: [4, 4, 1]
+    attn_q_paddings: [0,0, 0]
+    attn_k_paddings: [0,0, 0]
+    num_clusters: [1, 2, 4, *num_slots]
+    kernels: [[1,1], [4,4], [4,4], [8,8]]
+    strides: [[1,1], [4,4], [4,4], [1,1]] 
+    paddings: [[0,0], [0,0], [0,0], [0,0]]  
+  decoder_params:
+    conv_transposes: true
+    channels: [48, 48, 48, 48, 48, 4]
+    activations: [relu, relu, relu, relu, relu, null]
+    kernels: [5, 5, 5, 5, 5, 3]
+    strides: [2, 2, 2, 2, 1, 1]
+    paddings: [2, 2, 2, 2, 2, 1]
+    output_paddings: [1, 1, 1, 1, 0, 0]
+  w_broadcast: 8
+  h_broadcast: 8
+

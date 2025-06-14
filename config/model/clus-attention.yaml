@@ -1,0 +1,54 @@
+# @package _global_
+
+defaults:
+  - _base
+
+batch_size: 64
+trainer:
+  _target_: models.clus_attention.trainer.ClusAttentionTrainer
+  steps: 500_000
+  use_warmup_lr: true
+  warmup_steps: 10_000
+  use_exp_decay: true
+  exp_decay_rate: 0.5
+  exp_decay_steps: 100_000
+
+  optimizer_config:
+    alg: Adam
+    lr: 0.0003
+    weight_decay: 0.00001
+
+model:
+  _target_: models.clus_attention.model.ClusAttentionAE
+  name: clus-attention
+  num_slots: &num_slots ${dataset.max_num_objects}
+  encoder_params:
+    channels: 64
+    kernel_size: 5
+    stride: 1
+    padding: 2
+    output_channels: 64
+  model_params:
+    temps: [1, 1]
+    channels: [1, 64, 64]
+    num_attns: [ 3, 3]
+    attn_q_kernels: [8, 8]
+    attn_k_kernels: [8, 8]
+    attn_q_strides: [8, 1]
+    attn_k_strides: [8, 1]
+    attn_q_paddings: [0, 0]
+    attn_k_paddings: [0, 0]
+    num_clusters: [1, 4, *num_slots]
+    kernels: [[1,1], [8,8], [8,8]]  
+    strides: [[1,1], [8,8], [1,1]]   
+    paddings: [[1,1], [0,0], [0,0]]  
+  decoder_params:
+    conv_transposes: false
+    channels: [32, 32, 32, 4]
+    kernels: [5, 5, 5, 3]
+    strides: [1, 1, 1, 1]
+    paddings: [2, 2, 2, 1]
+    output_paddings: [0, 0, 0, 0]
+    activations: [relu, relu, relu, null]
+  h_broadcast: ${dataset.height}
+  w_broadcast: ${dataset.width}

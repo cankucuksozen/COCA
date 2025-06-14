@@ -1,0 +1,47 @@
+# @package _global_
+
+defaults:
+  - _base
+
+batch_size: 64
+trainer:
+  _target_: models.boq_slot_attention.trainer.BoqSlotAttentionTrainer
+  steps: 250_000
+  use_warmup_lr: true
+  warmup_steps: 5_000
+  use_exp_decay: true
+  exp_decay_rate: 0.5
+  exp_decay_steps: 50_000  
+  sigma_steps: 30_000
+  sigma_start: 1.0
+  sigma_final: 0.0
+
+  optimizer_config:
+    alg: Adam
+    lr: 0.0004
+
+model:
+  _target_: models.boq_slot_attention.model.BoqSlotAttentionAE
+  name: boq-slot-attention
+  num_slots: ${dataset.max_num_objects}
+  latent_size: 64
+  encoder_params:
+    channels: [64, 64, 64, 64]
+    kernels: [5, 5, 5, 5]
+    paddings: [2, 2, 2, 2]
+    strides: [1, 1, 1, 1]
+  decoder_params:
+    conv_transposes: true
+    channels: [64, 64, 64, 64, 64, 4]
+    kernels: [5, 5, 5, 5, 5, 3]
+    strides: [2, 2, 2, 1, 1, 1]
+    paddings: [2, 2, 2, 2, 2, 1]
+    output_paddings: [1, 1, 1, 0, 0, 0]
+    activations: [relu, relu, relu, relu, null]
+  attention_iters: 3
+  optimization_method: "bi-level"
+  slots_initialization: "embedding"
+  mlp_size: 128
+  eps: 1e-8
+  h_broadcast: 8
+  w_broadcast: 8

@@ -1,0 +1,49 @@
+# @package _global_
+
+defaults:
+  - _base
+
+batch_size: 64
+trainer:
+  _target_: models.inv_slot_attention.trainer.InvariantSlotAttentionTrainer
+  steps: 500_000
+  use_warmup_lr: true
+  warmup_steps: 10_000
+  use_exp_decay: true
+  exp_decay_rate: 0.5
+  exp_decay_steps: 100_000
+  optimizer_config:
+    alg: Adam
+    lr: 0.0004
+
+model:
+  _target_: models.inv_slot_attention.model.InvariantSlotAttentionAE
+  name: inv-slot-attention
+  num_slots: ${dataset.max_num_objects}
+  encoder_params:
+    channels: [64, 64, 64, 64]
+    encoder_type: "conv"
+    encoder_dict: 
+        kernels: [5, 5, 5, 5] 
+        strides: [2, 2, 1, 1]
+        paddings: [2, 2, 2, 2]
+        batchnorms: [false, false, false, false]
+        activations: [relu, relu, relu, null]
+  model_params:
+    in_res_w: 16
+    in_res_h: 16
+    num_attn_iters: 3
+    slot_dims: 64
+    mlp_dims: 128
+    zero_position_init: false
+    add_rel_pos_to_values: true
+    inc_scale: true
+  decoder_params:
+    conv_transposes: true
+    channels: [32, 32, 32, 32, 32, 4]
+    kernels: [5, 5, 5, 5, 5, 3]
+    strides: [2, 2, 1, 1, 1, 1]
+    paddings: [2, 2, 2, 2, 2, 1]
+    output_paddings: [1, 1, 0, 0, 0, 0]
+    activations: [relu, relu, relu, relu, null]
+

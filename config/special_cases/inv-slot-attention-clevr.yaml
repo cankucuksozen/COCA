@@ -1,0 +1,32 @@
+# @package _global_
+batch_size: 48
+num_slots: 7
+model:
+  num_slots: ${dataset.max_num_objects}
+  encoder_params:
+    channels: [64, 64, 64, 64]
+    encoder_type: "conv"
+    encoder_dict: 
+        kernels: [5, 5, 5, 5] 
+        strides: [2, 2, 2, 1]
+        paddings: [2, 2, 2, 2]
+        batchnorms: [false, false, false, false]
+        activations: [relu, relu, relu, null]
+  model_params:
+    in_res_w: 16
+    in_res_h: 16
+    num_attn_iters: 3
+    slot_dims: 64
+    mlp_dims: 128
+    zero_position_init: false
+    add_rel_pos_to_values: true
+    inc_scale: true
+  decoder_params:
+    conv_transposes: true
+    channels: [64, 64, 64, 64, 64, 4]
+    kernels: [5, 5, 5, 5, 5, 3]
+    strides: [2, 2, 2, 1, 1, 1]
+    paddings: [2, 2, 2, 2, 2, 1]
+    output_paddings: [1, 1, 1, 0, 0, 0]
+    activations: [relu, relu, relu, relu, null]
+
