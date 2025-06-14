@@ -7,14 +7,14 @@ Official GitHub repository for **CVPR2025 accepted paper**:
 ## 🖼️ Teaser Figure
 
 <p align="center">
-  <img src="four_datasets_compactness.png" width="1000">
+  <img src="assets/four_datasets_compactness.png" width="1000">
 </p>
 
 ###### Figure 1. Compactness scores obtained for each pixel in the scene, across four different datasets. The transition from bright yellow to deep purple signifies decreasing compactness. To obtain these scores, a trained COCA-Net encoder is used to generate object masks. Each object mask is then broadcasted to pixels based on the pixel-object assignments. This operation associates every pixel with a copy of its object’s mask. Finally, compactness scores for each pixel’s mask are calculated via Eq. 3 of the paper.
 
 ## 🔗 Links
 - [📄 Paper (arXiv)](https://arxiv.org/abs/2505.02071)
-- [📄 Camera-ready PDF](paper.pdf)
+- [📄 Camera-ready PDF](assets/paper.pdf)
 - [🌐 Project Page](https://cankucuksozen.github.io/COCA)
 - [🧠 BibTeX](bibtex.bib)
 
