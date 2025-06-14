@@ -45,17 +45,30 @@
 
 <div class="section">
   <h2>Teaser Figure</h2>
-  <p>
+  <p style="text-align: justify;">
     Compactness scores obtained for each pixel in the scene, across four different datasets. The transition from bright yellow to deep purple signifies decreasing compactness. To obtain these scores, a trained COCA-Net encoder is used to generate object masks. Each object mask is then broadcasted to pixels based on the pixel-object assignments. This operation associates every pixel with a copy of its object’s mask. Finally, compactness scores for each pixel’s mask are calculated via Eq. 3 of the paper.  </p>
   <img src="assets/four_datasets_compactness.png" alt="COCA teaser image">
 </div>
 
 <div class="section">
   <h2>Abstract</h2>
-  <p>
+  <p style="text-align: justify;">
     We propose the Compact Clustering Attention (COCA) layer, an effective building block that introduces a hierarchical strategy for object-centric representation learning, while solving the unsupervised object discovery task on single images. COCA is an attention-based clustering module capable of extracting object-centric representations from multi-object scenes, when cascaded into a bottom-up hierarchical network architecture, referred to as COCA-Net. At its core, COCA utilizes a novel clustering algorithm that leverages the physical concept of compactness, to highlight distinct object centroids in a scene, providing a spatial inductive bias. Thanks to this strategy, COCA-Net generates high-quality segmentation masks on both the decoder side and, notably, the encoder side of its pipeline. Additionally, COCA-Net is not bound by a predetermined number of object masks that it generates and handles the segmentation of background elements better than its competitors. We demonstrate COCA-Net’s segmentation performance on six widely adopted datasets, achieving superior or competitive results against the state-of-the-art models across nine different evaluation metrics.
   </p>
 </div
+
+<div class="section">
+  <h2>Computational Pipelines of the overall COCA-Net and a Single COCA Layer</h2>
+  <div style="display: flex; justify-content: center; gap: 20px;">
+  <div style="text-align: center; width: 48%;">
+    <img src="assets/COCANET_v2.png" style="width: 100%;">
+    <p style="font-size: 0.9em; margin-top: 5px;">Figure 1: Overall COCA-Net</p>
+  </div>
+  <div style="text-align: center; width: 48%;">
+    <img src="assets/COCA_alone_V2.png" style="width: 100%;">
+    <p style="font-size: 0.9em; margin-top: 5px;">Figure 2: Single COCA Layer</p>
+  </div>
+</div>
 
 <div class="section">
   <h2 id="bibtex">BibTeX</h2>
