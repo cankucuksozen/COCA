@@ -7,7 +7,7 @@ Official GitHub repository for **CVPR2025 accepted paper**:
 ## 🖼️ Teaser Figure
 
 <p align="center">
-  <img src="teaser.png" width="600">
+  <img src="four_datasets_compactness.png" width="600">
 </p>
 
 ## 🔗 Links
