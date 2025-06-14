@@ -19,8 +19,7 @@
 </head>
 <body>
 
-<h1>Hierarchical Compact Clustering Attention (COCA)</h1>
-<h2>for Unsupervised Object-Centric Learning</h2>
+<h1>Hierarchical Compact Clustering Attention (COCA) for Unsupervised Object-Centric Learning</h1>
 
 <div class="authors">
   Can Küçüksozen<sup>1,2</sup>, Yücel Yemez<sup>1,2</sup><br>
@@ -36,31 +35,31 @@
   <a href="#bibtex">[BibTeX]</a>
 </p>
 
-<img src="assets/teaser.png" alt="COCA teaser image">
+<div class="section">
+  <h2>Teaser Figure</h2>
+  <p>
+    Figure 1. Compactness scores obtained for each pixel in the scene, across four different datasets. The transition from bright yellow to deep purple signifies decreasing compactness. To obtain these scores, a trained COCA-Net encoder is used to generate object masks. Each object mask is then broadcasted to pixels based on the pixel-object assignments. This operation associates every pixel with a copy of its object’s mask. Finally, compactness scores for each pixel’s mask are calculated via Eq. 3 of the paper.  </p>
+  <img src="assets/teaser.png" alt="COCA teaser image">
+</div>
 
 <div class="section">
   <h2>Abstract</h2>
   <p>
     We propose the Compact Clustering Attention (COCA) layer, an effective building block that introduces a hierarchical strategy for object-centric representation learning, while solving the unsupervised object discovery task on single images. COCA is an attention-based clustering module capable of extracting object-centric representations from multi-object scenes, when cascaded into a bottom-up hierarchical network architecture, referred to as COCA-Net. At its core, COCA utilizes a novel clustering algorithm that leverages the physical concept of compactness, to highlight distinct object centroids in a scene, providing a spatial inductive bias. Thanks to this strategy, COCA-Net generates high-quality segmentation masks on both the decoder side and, notably, the encoder side of its pipeline. Additionally, COCA-Net is not bound by a predetermined number of object masks that it generates and handles the segmentation of background elements better than its competitors. We demonstrate COCA-Net’s segmentation performance on six widely adopted datasets, achieving superior or competitive results against the state-of-the-art models across nine different evaluation metrics.
   </p>
-</div>
-
-<div class="section">
-  <h2>Teaser Figure</h2>
-  <p>
-    Figure 1. Compactness scores obtained for each pixel in the scene, across four different datasets. The transition from bright yellow to deep purple signifies decreasing compactness. To obtain these scores, a trained COCA-Net encoder is used to generate object masks. Each object mask is then broadcasted to pixels based on the pixel-object assignments. This operation associates every pixel with a copy of its object’s mask. Finally, compactness scores for each pixel’s mask are calculated via Eq. 3 of the paper.  </p>
-  <img src="assets/teaser.png" alt="Compactness map teaser">
-</div>
+</div
 
 <div class="section">
   <h2 id="bibtex">BibTeX</h2>
   <div class="bibtex">
-@inproceedings{Kucuksozen2025COCA,<br>
+@InProceedings{Kucuksozen_2025_CVPR,<br>
+&nbsp;&nbsp;author = {Kucuksozen, Can and Yemez, Yucel},
 &nbsp;&nbsp;title = {Hierarchical Compact Clustering Attention (COCA) for Unsupervised Object-Centric Learning},<br>
-&nbsp;&nbsp;author = {Küçüksozen, Can and Yemez, Yücel},<br>
-&nbsp;&nbsp;booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},<br>
+&nbsp;&nbsp;booktitle = {Proceedings of the Computer Vision and Pattern Recognition Conference (CVPR)},<br>
+&nbsp;&nbsp;month = {June}<br>
 &nbsp;&nbsp;year = {2025}<br>
-}
+&nbsp;&nbsp;pages = {25388-25398}<br>
+    }
   </div>
 </div>
 
