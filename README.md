@@ -1,9 +1,7 @@
-# COCA
 Official GitHub repository for **CVPR2025 accepted paper**: 
 # Hierarchical Compact Clustering Attention (COCA) for Unsupervised Object-Centric Learning
 
-
-[![arXiv](https://img.shields.io/badge/arXiv-XXXX.XXXXX-b31b1b.svg)](https://arxiv.org/abs/2505.02071)
+[![arXiv](https://img.shields.io/badge/arXiv-2505.02071-b31b1b.svg)](https://arxiv.org/abs/2505.02071)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
